@@ -1,6 +1,7 @@
 app-admin
 app-eselect
 app-portage
+app-shells
 sys-apps
 sys-devel
 virtual
