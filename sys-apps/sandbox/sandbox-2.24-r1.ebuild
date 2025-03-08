@@ -31,11 +31,12 @@ src_prepare() {
 	# not play well with gcc's LTO: https://gcc.gnu.org/PR48200
 	append-flags -fno-lto
 	append-ldflags -fno-lto
+
+	./autogen.sh
 }
 
 multilib_src_configure() {
 	filter-lfs-flags #90228
-
 	ECONF_SOURCE="${S}" econf
 }
 
