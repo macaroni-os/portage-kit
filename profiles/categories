@@ -1,6 +1,7 @@
 app-admin
 app-eselect
 app-portage
+app-shells
 app-vim
 sys-apps
 sys-devel
