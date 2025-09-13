@@ -43,6 +43,7 @@ src_install() {
 	dodoc doc/*.rst
 	insinto /etc
 	doins $S/etc/*.conf*
+	doins "${FILESDIR}/boot.conf.dist"
 	if use zsh-completion; then
 		insinto /usr/share/zsh/site-functions
 		doins contrib/completion/zsh/_ego
