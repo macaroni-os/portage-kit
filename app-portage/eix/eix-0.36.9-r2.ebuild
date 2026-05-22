@@ -87,6 +87,14 @@ src_install() {
 	dobashcomp bash/eix
 	dotmpfiles tmpfiles.d/eix.conf
 	echo 'PORTDIR_CACHE_METHOD="parse#metadata-md5#metadata-flat#assign"' >> "${D}"/etc/eixrc/mark.conf
+	echo 'OVERLAY_CACHE_METHOD="parse#metadata-md5#metadata-flat#assign"' >> "${D}"/etc/eixrc/mark.conf
+	cat <<- EOF >> "${D}"/etc/eix-sync.conf
+		@StatusInfo "Generating portage metadata ..."
+		@emerge --regen >&2 >/dev/null || true
+		# After the eix db is created
+		@@StatusInfo "Syncing anise with portage ..."
+		@@anise-portage-converter sync >&2 > /dev/null || true
+	EOF
 
 	rm -r "${ED}"/usr/bin/eix-functions.sh || die
 }
