@@ -101,6 +101,9 @@ src_install() {
 
 pkg_postinst() {
 	tmpfiles_process eix.conf
+	
+	# Fix /var/db permissions to allow proper metadata access
+	chmod 755 /var/db || die
 
 	local obs=${EROOT}/var/cache/eix.previous
 	if [[ -f ${obs} ]]; then
